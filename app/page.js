@@ -138,10 +138,16 @@ export default function Home() {
           {/* Large Button Start */}
           <div className="large-btn">
             <div className="content-inner">
-              <a className="btn" href="#">
+              <a
+                className="btn"
+                href="https://docs.google.com/document/d/16ri8N2mMJduUHPs0GtKxxmcgvwYRGy6Mfb4UMEbScrk/edit?usp=sharing"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 <i className="fa fa-download" />
                 Resume
               </a>
+
               <a className="btn" href="#">
                 <i className="fa fa-hands-helping" />
                 Hire Me
@@ -172,7 +178,7 @@ export default function Home() {
                 <div className="col-md-6">
                   <div className="skills">
                     <div className="skill-name">
-                      <p>Design</p>
+                      <p>Python(Fastapi)</p>
                       <p>85%</p>
                     </div>
                     <div className="progress">
@@ -185,7 +191,7 @@ export default function Home() {
                       />
                     </div>
                     <div className="skill-name">
-                      <p>SEO</p>
+                      <p>JavaScript(React)</p>
                       <p>95%</p>
                     </div>
                     <div className="progress">
@@ -202,7 +208,7 @@ export default function Home() {
                 <div className="col-md-6">
                   <div className="skills">
                     <div className="skill-name">
-                      <p>Development</p>
+                      <p>DBMS(MySql)</p>
                       <p>90%</p>
                     </div>
                     <div className="progress">
@@ -801,7 +807,3 @@ export default function Home() {
 
   );
 }
-
-
-
-
