@@ -475,7 +475,7 @@ export default function Home() {
                       </a>
 
                       <a
-                        href="https://gymster-fronted.onrender.com"
+                        href="https://my-bus-fronted.onrender.com"
                         className="link-details"
                         title="Live Site"
                         target="_blank"
@@ -486,11 +486,11 @@ export default function Home() {
 
                       <a
                         className="portfolio-title"
-                        href="https://gymster-fronted.onrender.com"
+                        href="https://my-bus-fronted.onrender.com"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
-                        Gymster Project <span>Web Design</span>
+                        Bus-booking Project <span>Web Design</span>
                       </a>
                     </figure>
                   </div>
