@@ -1,5 +1,6 @@
 'use client';
 
+import axios from 'axios';
 import React, { useState } from "react";
 
 
@@ -8,6 +9,7 @@ export default function Home() {
   const [formData, setFormData] = useState({
     name: '',
     email: '',
+    subject: '',
     message: '',
   });
 
@@ -20,28 +22,31 @@ export default function Home() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true);
+    setLoading(true); // ⬅️ Yahi pe spinner start hota hai
     setAlert({ message: '', type: '' });
 
     try {
-      const res = await axios.post(`https://my-bus-backend-api.onrender.com/contact/`, formData);
+      const res = await axios.post(
+        'https://gymster-backend-api-1.onrender.com/contact/create',
+        formData
+      );
 
       setAlert({
-        message: 'Message sent successfully! We will get back to you soon.',
+        message: 'Message sent successfully!',
         type: 'success',
       });
 
-      // ✅ subject hata diya reset se
-      setFormData({ name: '', email: '', message: '' });
+      setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (err) {
+      console.error('Axios Error:', err);
       const errorMessage =
-        err.response?.data?.detail || 'Error sending message. Please try again later.';
+        err.response?.data?.detail || 'Network Error: Please try again.';
       setAlert({
         message: errorMessage,
         type: 'error',
       });
     } finally {
-      setLoading(false);
+      setLoading(false); // ⬅️ Spinner band hota hai
     }
   };
 
@@ -130,7 +135,7 @@ export default function Home() {
               <h1>Hemraj kumawat</h1>
               <h2 />
               <div className="typed-text">
-                full stack devlooper
+                Full stack devlooper
               </div>
             </div>
           </div>
@@ -140,9 +145,8 @@ export default function Home() {
             <div className="content-inner">
               <a
                 className="btn"
-                href="https://docs.google.com/document/d/16ri8N2mMJduUHPs0GtKxxmcgvwYRGy6Mfb4UMEbScrk/edit?usp=sharing"
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/resume.pdf"
+                download
               >
                 <i className="fa fa-download" />
                 Resume
@@ -211,7 +215,7 @@ export default function Home() {
                       <p>DBMS(MySql)</p>
                       <p>90%</p>
                     </div>
-                    <div className="progress">
+                    {/* <div className="progress">
                       <div
                         className="progress-bar"
                         role="progressbar"
@@ -223,7 +227,7 @@ export default function Home() {
                     <div className="skill-name">
                       <p>Marketing</p>
                       <p>85%</p>
-                    </div>
+                    </div> */}
                     <div className="progress">
                       <div
                         className="progress-bar"
@@ -427,9 +431,8 @@ export default function Home() {
                     <li data-filter="*" className="filter-active">
                       All
                     </li>
-                    <li data-filter=".web-des">Design</li>
-                    <li data-filter=".web-dev">Development</li>
-                    <li data-filter=".dig-mar">Marketing</li>
+                    {/* <li data-filter=".web-des">Design</li>
+                    <li data-filter=".web-dev">Development</li> */}
                   </ul>
                 </div>
               </div>
@@ -683,7 +686,7 @@ export default function Home() {
                     </p>
                     <p>
                       <i className="fa fa-tag" />
-                      full stack developer
+                      Full stack developer
                     </p>
                     <p>
                       <i className="fa fa-envelope" />
@@ -747,7 +750,17 @@ export default function Home() {
                         </div>
                       </div>
 
-                      {/* ❌ Subject field hata diya */}
+                      <div className="form-group">
+                        <input
+                          name="subject"
+                          type="text"
+                          className="form-control"
+                          placeholder="Subject"
+                          value={formData.subject}
+                          onChange={handleChange}
+                          required
+                        />
+                      </div>
 
                       <div className="form-group">
                         <textarea
@@ -761,8 +774,14 @@ export default function Home() {
                         />
                       </div>
 
+                      {alert.message && (
+                        <div className={`alert ${alert.type === 'success' ? 'alert-success' : 'alert-danger'}`}>
+                          {alert.message}
+                        </div>
+                      )}
+
                       <div>
-                        <button className="btn" type="submit" disabled={loading}>
+                        <button className="btn btn-primary" type="submit" disabled={loading}>
                           {loading ? (
                             <>
                               <span className="spinner-border spinner-border-sm me-2"></span> Sending...
