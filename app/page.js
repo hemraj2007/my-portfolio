@@ -264,7 +264,7 @@ export default function Home() {
                 <div className="col-md-6">
                   <div className="edu-col">
                     <span>
-                      01-Aug-2022 <i>to</i> Pursuing
+                      20-jun-2025 <i>to</i> Pursuing
                     </span>
                     <h3>Bachelor of Computer Applications (BCA)</h3>
                     <p>
